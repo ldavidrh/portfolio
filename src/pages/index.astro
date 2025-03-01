@@ -1,5 +1,5 @@
 ---
-import Navbar from "../components/Navbar.astro";
+import Hero from "@components/Hero.astro";
 import "@styles/index.scss";
 ---
 
@@ -9,9 +9,15 @@ import "@styles/index.scss";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>David Restrepo | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <Navbar />
+    <Hero />
   </body>
 </html>
