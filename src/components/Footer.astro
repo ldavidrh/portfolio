@@ -1,0 +1,73 @@
+<div class="footer">
+    <h1>Let's work together!</h1>
+    <div class="time">
+        <p style="font-size: 36px;">1:48:21 (GMT-5)</p>
+        <div class="separator"></div>
+    </div>
+    <div class="after-separator">
+        <p style="font-weight: 200; font-size: 64px;">
+            luisrestrepo1995@gmail.com
+        </p>
+        <div class="links">
+            <div class="links-column">
+                <span>Linkedin</span>
+                <span>Instagram</span>
+            </div>
+            <div class="links-column">
+                <span>Cali,</span>
+                <span>Colombia</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style lang="scss">
+    .footer {
+        height: 100dvh;
+        background-color: var(--main-background);
+        padding: 128px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h1 {
+            font-size: 128px;
+            font-weight: 400;
+            text-transform: uppercase;
+            width: 50%;
+        }
+        .separator {
+            width: 100%;
+            height: 1px;
+            background-color: var(--accent);
+        }
+
+        .time {
+            font-size: 36px;
+            margin-block: 2rem;
+            display: flex;
+            flex-direction: column;
+
+            p {
+                margin-left: auto;
+            }
+        }
+
+        .links {
+            display: flex;
+            gap: 10rem;
+            &-column {
+                display: flex;
+                flex-direction: column;
+                font-size: 28px;
+                font-weight: 300;
+            }
+        }
+
+        .after-separator {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+</style>

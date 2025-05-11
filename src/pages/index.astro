@@ -1,5 +1,8 @@
 ---
+import About from "@components/About.astro";
+import Footer from "@components/Footer.astro";
 import Hero from "@components/Hero.astro";
+import ImageIntro from "@components/ImageIntro.astro";
 import "@styles/index.scss";
 ---
 
@@ -19,5 +22,28 @@ import "@styles/index.scss";
   </head>
   <body>
     <Hero />
+    <ImageIntro />
+    <About />
+    <Footer />
   </body>
+  <script>
+    import Lenis from "lenis";
+    import ScrollTrigger from "gsap/ScrollTrigger";
+    import gsap from "gsap";
+
+    // Initialize a new Lenis instance for smooth scrolling
+    const lenis = new Lenis();
+
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+    // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+    });
+
+    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+    gsap.ticker.lagSmoothing(0);
+  </script>
 </html>

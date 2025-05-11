@@ -11,11 +11,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "astro": "5.4.1",
+    "astro": "^5.7.12",
     "gsap": "^3.12.5",
     "lenis": "^1.1.16",
     "sass": "^1.81.0",
-    "split-type": "^0.3.4",
     "typescript": "^5.6.3"
   }
 }

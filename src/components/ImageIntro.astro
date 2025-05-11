@@ -1,0 +1,78 @@
+---
+import David from "@images/photo.webp";
+import { Image } from "astro:assets";
+import MaskBall from "./sections/MaskBall.astro";
+---
+
+<div class="image-intro">
+    <MaskBall />
+    <Image
+        src={David}
+        alt="Grayscale image of David"
+        class="img grayscale-mask"
+    />
+    <Image src={David} alt="Normal image of David" class="img" />
+</div>
+
+<style>
+    .image-intro {
+        position: relative;
+        height: 100dvh;
+        overflow: hidden;
+        cursor: none;
+    }
+    .img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        object-fit: cover;
+        z-index: 2;
+    }
+    .grayscale-mask {
+        z-index: 5;
+        filter: grayscale(1);
+    }
+</style>
+
+<script>
+    import gsap from "gsap";
+
+    const el = document.querySelector(".image-intro");
+    const ball = document.querySelector("#mask-ball-element");
+
+    gsap.set(ball, {
+        xPercent: -50,
+        yPercent: -50,
+    });
+
+    gsap.set(ball, {
+        scale: 0,
+        pointerEvents: "none",
+    });
+
+    el?.addEventListener("mousemove", (event) => {
+        const mouseEvent = event as MouseEvent;
+        const { offsetX, offsetY } = mouseEvent;
+        gsap.to(ball, {
+            x: offsetX,
+            y: offsetY,
+            duration: 0.1,
+        });
+    });
+
+    const showBall = gsap.to(ball, {
+        scale: 1,
+        duration: 0.2,
+        ease: "power2.inOut",
+        paused: true,
+    });
+
+    el?.addEventListener("mouseenter", () => {
+        showBall.play();
+    });
+
+    el?.addEventListener("mouseleave", () => {
+        showBall.reverse();
+    });
+</script>
