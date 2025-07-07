@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  imageUrl: string;
+}
+
+const { title, subtitle, imageUrl } = Astro.props;
+---
+
+<div class="project-card">
+  <img src={imageUrl} alt="asdasdasd" class="project-image" />
+  <div class="project-footer">
+    <p class="project-title">{title}</p>
+    <p class="project-subtitle">{subtitle}</p>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    width: 100%;
+    min-width: 300px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .project-image {
+    width: 100%;
+    min-height: 650px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  .project-footer {
+    padding: 16px;
+  }
+
+  .project-title {
+    font-size: 40px;
+  }
+  .project-subtitle {
+    font-size: 24px;
+    color: var(--secondary);
+  }
+</style>

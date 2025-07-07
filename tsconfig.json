@@ -11,6 +11,9 @@
       ],
       "@images/*": [
         "src/images/*"
+      ],
+      "@shared/*":[
+        "src/shared/*"
       ]
     }
   }

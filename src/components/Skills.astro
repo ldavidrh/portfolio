@@ -1,0 +1,39 @@
+---
+const skills = ["Angular", "Astro", "SCSS", "GSAP", "WordPress"];
+---
+
+<section class="skills container">
+  <h1 class="title">Skills</h1>
+  <div class="skill-list">
+    {
+      skills.map((skill, index) => (
+        <div
+          class:list={[
+            "skill",
+            { "is-last-skill": index === skills.length - 1 },
+          ]}
+        >
+          {skill}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skill {
+    border-top: 1px solid gray;
+    padding-block: 8px;
+    font-size: 32px;
+    font-weight: 200;
+  }
+
+  .is-last-skill {
+    border-bottom: 1px solid gray;
+  }
+</style>

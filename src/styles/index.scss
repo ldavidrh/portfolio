@@ -1,2 +1,26 @@
 @use "reset.scss";
 @use "definitions.scss";
+
+.container {
+  padding: 90px;
+
+  @media screen and (max-width: 728px) {
+    padding: 16px;
+  }
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.title {
+  font-size: 96px;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--secondary);
+  width: 50%;
+}

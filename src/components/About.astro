@@ -1,43 +1,12 @@
----
-import NumeratedTitle from "./NumeratedTitle.astro";
----
-
-<div class="about">
-    <NumeratedTitle title="Who am i" index="01" />
-    <div class="text">
-        <p style="align-self:flex-end;">
-            With over 3 years of experience as a Web UI developer, I'm
-            passionate about crafting engaging web experiences that connect
-            businesses with their clients in meaningful ways.
-        </p>
-        <p>
-            I'm deeply in love with frontend development, constantly learning
-            and growing every day, and aspiring to expand my skills into design.
-            <br />
-            <br />
-            From sleek landing pages to complex web applications, I thrive on bringing
-            ideas to life with creativity and precision.
-        </p>
-    </div>
-</div>
-
-<style lang="scss">
-    .about {
-        padding: 256px 128px;
-        background-color: var(--main-background);
-
-        .text {
-            margin-top: 30rem;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            gap: 30rem;
-
-            p {
-                font-size: 32px;
-                font-weight: light;
-                width: 50%;
-            }
-        }
-    }
-</style>
+<section class="container">
+  <p style="font-size: 64px; margin-top: 10rem;">
+    With <span class="text-accent">4+ years of experience</span>, I turn complex
+    ideas into <span class="text-accent">intuitive</span>, <span
+      class="text-accent">high-performing</span
+    > web experiences. I merge precise development with a <span
+      class="text-accent">deep attention</span
+    > to visual detail to create products that are both <span
+      class="text-accent">seamless</span
+    > and <span class="text-accent">captivating</span>.
+  </p>
+</section>
