@@ -35,6 +35,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Debug - Print working directory and list files
+        run: |
+          pwd
+          ls -lah
+          ls -lah ${{ github.workspace }}
       - name: Detect package manager
         id: detect-package-manager
         run: |
