@@ -14,13 +14,17 @@
 }
 
 .title {
-  font-size: 96px;
+  font-size: clamp(3rem, 1.944rem + 4.507vw, 6rem);
   font-weight: 400;
 }
 
 .subtitle {
-  font-size: 32px;
+  font-size: clamp(1rem, 0.648rem + 1.502vw, 2rem);
   font-weight: 300;
   color: var(--secondary);
   width: 50%;
+}
+
+.main-text {
+  font-size: clamp(2rem, 1.296rem + 3.005vw, 4rem);
 }

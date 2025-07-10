@@ -7,6 +7,8 @@ import Skills from "@components/Skills.astro";
 
 import type { Project } from "src/shared/models";
 import Work from "@components/Work.astro";
+import Availability from "@components/Availability.astro";
+import Footer from "@components/Footer.astro";
 const projects: Project[] = [
   {
     title: "Travel.ly",
@@ -50,6 +52,8 @@ const projects: Project[] = [
     <About />
     <Work projects={projects} />
     <Skills />
+    <Availability />
+    <Footer />
   </body>
 
   <script>
