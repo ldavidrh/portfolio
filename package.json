@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "astro": "^5.7.12",
+    "astro": "^5.12.0",
     "gsap": "^3.12.5",
     "lenis": "^1.1.16",
     "sass": "^1.81.0",

@@ -1,0 +1,68 @@
+---
+const { name, description, isLast, bgColor } = Astro.props;
+console.log(bgColor);
+---
+
+<service-item
+  class:list={["service-item", { "is-last": isLast }]}
+  data-bgcolor={bgColor}
+>
+  <h3 class="service-name">{name}</h3>
+  <p class="service-description">
+    {description}
+  </p>
+</service-item>
+
+<style lang="scss">
+  .service-item {
+    border-top: 1px solid gray;
+    padding-block: 18px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 300px;
+
+    .service-name {
+      font-size: 64px;
+      font-weight: 300;
+    }
+
+    .service-description {
+      max-width: 600px;
+      color: #484848;
+      font-size: 24px;
+    }
+  }
+
+  .is-last {
+    border-bottom: 1px solid gray;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  class ServiceItem extends HTMLElement {
+    connectedCallback() {
+      const bgColor = this.dataset.bgcolor;
+      console.log({ bgColor });
+
+      const onHoverAnimation = gsap
+        .to(this, {
+          backgroundColor: bgColor,
+        })
+        .pause();
+
+      const onMouseEnter = () => {
+        onHoverAnimation.play();
+      };
+
+      const onMouseLeave = () => {
+        onHoverAnimation.reverse();
+      };
+      this.addEventListener("mouseenter", onMouseEnter);
+      this.addEventListener("mouseleave", onMouseLeave);
+    }
+  }
+
+  customElements.define("service-item", ServiceItem);
+</script>

@@ -1,0 +1,54 @@
+---
+import ServiceItem from "./ServiceItem.astro";
+
+const services = [
+  {
+    name: "DESIGN",
+    description:
+      "We transform your initial concept into a beautiful, intuitive, and user-friendly digital experience. From wireframes to final mockups, we design with your audience in mind to ensure engagement and success.",
+    bgColor: "#FFD6E8", // Pastel Pink
+  },
+  {
+    name: "DEVELOP",
+    description:
+      "Have a design ready to go? We bring it to life with clean, efficient code. Our commitment to pixel-perfect implementation ensures your vision is translated into a fast, responsive, and reliable website or application.",
+    bgColor: "#D6F0FF", // Pastel Blue
+  },
+  {
+    name: "DESIGN + DEV",
+    description:
+      "We transform your initial concept into a beautiful, intuitive, and user-friendly digital experience. From wireframes to final mockups, we design with your audience in mind to ensure engagement and success.",
+    bgColor: "#FFF9D6", // Pastel Yellow
+  },
+];
+---
+
+<div class="services container">
+  <h2 class="title">Services</h2>
+  <p class="subtitle">These are the services you can acquire from me.</p>
+  <div class="services-list">
+    {
+      services.map((service, index) => (
+        <ServiceItem
+          name={service.name}
+          description={service.description}
+          bgColor={service.bgColor}
+          isLast={index === services.length - 1}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style lang="scss">
+  .services {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+</style>
