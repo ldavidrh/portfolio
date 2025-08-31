@@ -1,0 +1,33 @@
+---
+const blobSize = 15; // Size of the blob in pixels
+---
+
+<div class="blob"></div>
+
+<style lang="scss" define:vars={{ blobSize }}>
+  .blob {
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    pointer-events: none;
+    z-index: 9999;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  document.addEventListener("mousemove", (e) => {
+    const blob = document.querySelector(".blob");
+    const x = e.clientX;
+    const y = e.clientY;
+
+    gsap.to(blob, {
+      x: x - 7.5,
+      y: y - 7.5,
+      duration: 0.5,
+      ease: "power1.out",
+    });
+  });
+</script>

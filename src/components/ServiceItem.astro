@@ -1,6 +1,6 @@
 ---
 const { name, description, isLast, bgColor } = Astro.props;
-console.log(bgColor);
+
 ---
 
 <service-item
@@ -44,7 +44,7 @@ console.log(bgColor);
   class ServiceItem extends HTMLElement {
     connectedCallback() {
       const bgColor = this.dataset.bgcolor;
-      console.log({ bgColor });
+
 
       const onHoverAnimation = gsap
         .to(this, {

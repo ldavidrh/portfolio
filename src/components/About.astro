@@ -1,5 +1,5 @@
-<section class="container">
-  <p style="margin-block: 10rem;" class="main-text">
+<section class="container" id="about">
+  <p style="margin-block: 10rem;" class="main-text" id="about-text">
     With <span class="text-accent">4+ years of experience</span>, I turn complex
     ideas into <span class="text-accent">intuitive</span>, <span
       class="text-accent">high-performing</span
@@ -10,3 +10,26 @@
     > and <span class="text-accent">captivating</span>.
   </p>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  import SplitText from "gsap/SplitText";
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  const split = SplitText.create("#about-text", { type: "words, chars" });
+
+  gsap.from(split.words, {
+    scrollTrigger: {
+      trigger: "#about",
+      start: "bottom bottom",
+      end: "bottom 30%",
+      markers: true,
+      pin: true,
+      scrub: 1,
+    },
+    stagger: 0.5,
+    opacity: 0,
+  });
+</script>
