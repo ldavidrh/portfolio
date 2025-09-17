@@ -22,3 +22,14 @@
     }
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  const dotAnimation = gsap
+    .to(".dot", {
+      opacity: 0,
+      repeat: -1,
+      duration: 1,
+    })
+    .yoyo(true);
+</script>

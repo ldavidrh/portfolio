@@ -8,39 +8,54 @@ interface Props {
 const { title, subtitle, imageUrl } = Astro.props;
 ---
 
-<div class="project-card">
-  <img src={imageUrl} alt="asdasdasd" class="project-image" />
-  <div class="project-footer">
-    <p class="project-title">{title}</p>
-    <p class="project-subtitle">{subtitle}</p>
+<div class="card h-[700px] relative overflow-hidden">
+  <img
+    src={imageUrl}
+    alt="Cover"
+    class="h-full object-cover rounded-2xl hover:brightness-50 duration-200 z-0 flex items-center justify-center"
+  />
+  <div
+    class="slider-container z-10 text-7xl size-full flex items-center absolute top-0 left-0 pointer-events-none"
+  >
+    <div class="slider whitespace-nowrap text-white flex">
+      <span class="pointer-events-none"> {title.concat(" - ").repeat(5)} </span>
+    </div>
   </div>
 </div>
 
-<style>
-  .project-card {
-    width: 100%;
-    min-width: 300px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-  }
+<script>
+  import gsap from "gsap";
+  const cards = document.querySelectorAll(".card");
 
-  .project-image {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 16px;
-  }
-  .project-footer {
-    padding-block: 16px;
-  }
+  cards.forEach((card) => {
+    const slider = card?.querySelector(".slider")!;
 
-  .project-title {
-    font-size: clamp(1.5rem, 1.148rem + 1.502vw, 2.5rem);
-  }
-  .project-subtitle {
-    font-size: clamp(1rem, 0.824rem + 0.751vw, 1.5rem);
-    color: var(--secondary);
-  }
-</style>
+    gsap.set(slider, { opacity: 0 });
+
+    const slideAnimation = gsap
+      .to(slider, {
+        xPercent: -100,
+        duration: 20,
+        ease: "linear",
+      })
+      .pause();
+
+    const fadeAnimation = gsap
+      .to(slider, {
+        opacity: 1,
+        duration: 0.2,
+        ease: "linear",
+      })
+      .pause();
+
+    card.addEventListener("mouseenter", () => {
+      console.log("mouseenter");
+      slideAnimation.play();
+      fadeAnimation.play();
+    });
+    card.addEventListener("mouseleave", () => {
+      console.log("mouseleave");
+      fadeAnimation.reverse().then((_) => slideAnimation.pause(0));
+    });
+  });
+</script>

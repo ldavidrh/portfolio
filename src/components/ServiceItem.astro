@@ -1,21 +1,43 @@
 ---
-const { name, description, isLast, bgColor } = Astro.props;
+import FigmaIcon from "@images/brand-icons/figma.svg";
+import AngularIcon from "@images/brand-icons/angular.svg";
+import AstroIcon from "@images/brand-icons/astro.svg";
+import SassIcon from "@images/brand-icons/sass.svg";
 
+const icons = [
+  { icon: FigmaIcon, color: "#F24E1E" },
+  { icon: AstroIcon, color: "#BC52EE" },
+  { icon: AngularIcon, color: "#0F0F11" },
+  { icon: SassIcon, color: "#CC6699" },
+];
+
+const { name, description, isLast } = Astro.props;
 ---
 
-<service-item
-  class:list={["service-item", { "is-last": isLast }]}
-  data-bgcolor={bgColor}
->
+<div class:list={["service-item", { "is-last": isLast }]}>
   <h3 class="service-name">{name}</h3>
-  <p class="service-description">
-    {description}
-  </p>
-</service-item>
+  <div class="description">
+    <p class="service-description">
+      {description}
+    </p>
+
+    <div class="icons">
+      {
+        icons.map(({ icon: Icon, color }, idx) => (
+          <Icon
+            width={24}
+            height={24}
+            style={`color: ${color}; fill: ${color};`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>
 
 <style lang="scss">
   .service-item {
-    border-top: 1px solid gray;
+    border-top: 1px solid rgb(220, 220, 220);
     padding-block: 18px;
     display: flex;
     justify-content: space-between;
@@ -26,43 +48,23 @@ const { name, description, isLast, bgColor } = Astro.props;
       font-weight: 300;
     }
 
-    .service-description {
-      max-width: 600px;
-      color: #484848;
-      font-size: 24px;
+    .description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .service-description {
+        max-width: 600px;
+        color: #484848;
+        font-size: 24px;
+      }
+      .icons {
+        display: flex;
+        gap: 1rem;
+      }
     }
   }
 
   .is-last {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(220, 220, 220);
   }
 </style>
-
-<script>
-  import gsap from "gsap";
-
-  class ServiceItem extends HTMLElement {
-    connectedCallback() {
-      const bgColor = this.dataset.bgcolor;
-
-
-      const onHoverAnimation = gsap
-        .to(this, {
-          backgroundColor: bgColor,
-        })
-        .pause();
-
-      const onMouseEnter = () => {
-        onHoverAnimation.play();
-      };
-
-      const onMouseLeave = () => {
-        onHoverAnimation.reverse();
-      };
-      this.addEventListener("mouseenter", onMouseEnter);
-      this.addEventListener("mouseleave", onMouseLeave);
-    }
-  }
-
-  customElements.define("service-item", ServiceItem);
-</script>

@@ -1,47 +1,47 @@
 ---
 import type { Project } from "@shared/models";
+import TitledSection from "./TitledSection.astro";
 import ProjectCard from "./ProjectCard.astro";
 
-interface Props {
-  projects: Project[];
-}
-const { projects } = Astro.props;
+const projects: Project[] = [
+  {
+    title: "Travel.ly",
+    subtitle: "Find your best trip plan.",
+    imageUrl: "https://picsum.photos/1280/720?random=1",
+  },
+  {
+    title: "Framework",
+    subtitle: "Machines for the most tech enthusiast.",
+    imageUrl: "https://picsum.photos/1280/720?random=2",
+  },
+  {
+    title: "Render.io",
+    subtitle: "Create 3D models for your projects.",
+    imageUrl: "https://picsum.photos/1280/720?random=3",
+  },
+  {
+    title: "Portfolio",
+    subtitle: "Personal architecture portfolio.",
+    imageUrl: "https://picsum.photos/1280/720?random=4",
+  },
+];
 ---
 
-<section class="work container">
-  <h1 class="title">Work</h1>
-  <p class="subtitle">
-    See a list of curated works, from web apps to beautifully styled landing
-    pages, these projects showcase the passion and quality of my final
-    deliveries.
-  </p>
-  <div class="project-list">
-    {
-      projects.map((project: Project) => (
-        <ProjectCard
-          title={project.title}
-          subtitle={project.subtitle}
-          imageUrl={project.imageUrl}
-        />
-      ))
-    }
-  </div>
-</section>
-
-<style>
-  .work {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .project-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    @media screen and (max-width: 768px) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    row-gap: 72px;
-    column-gap: 24px;
-  }
-</style>
+<div>
+  <TitledSection
+    title={"Work"}
+    subtitle={"See a list of curated works, from web apps to beautifully styled landing pages, these projects showcase the passion and quality of my final deliveries."}
+  >
+    <div class="mt-5 h-fit grid gap-4 grid-cols-2">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            title={project.title}
+            subtitle={project.subtitle}
+            imageUrl={project.imageUrl}
+          />
+        ))
+      }
+    </div>
+  </TitledSection>
+</div>

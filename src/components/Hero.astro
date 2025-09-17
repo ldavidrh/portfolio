@@ -3,23 +3,16 @@ import Image from "astro/components/Image.astro";
 import Photo from "@images/photo.webp";
 ---
 
-<section class="hero container">
-  <p class="main-text">
-    Hi, my name is David Restrepo. <br />
-    I'am a <span class="text-accent">Multidisciplinary Web Developer</span>
+<section class="xl:p-28">
+  <h1 class="xl:text-7xl md:text-5xl text-4xl mb-10">
+    Hi, my name is David Restrepo. I'am a <span class="text-red-500"
+      >Multidisciplinary Web Developer</span
+    >
     based in Cali, Colombia.
-  </p>
-  <Image src={Photo} alt="Hero image of David" class="img" />
+  </h1>
+  <Image
+    src={Photo}
+    alt="David Restrepo"
+    class="rounded-2xl xl:h-screen md:h-[600px] h-[400px] object-cover"
+  />
 </section>
-
-<style lang="scss">
-  .hero {
-    .img {
-      object-fit: cover;
-      width: 100%;
-      height: 50dvw;
-      margin-top: 4rem;
-      border-radius: 16px;
-    }
-  }
-</style>

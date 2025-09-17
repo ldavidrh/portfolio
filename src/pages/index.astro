@@ -1,39 +1,12 @@
 ---
-import "@styles/index.scss";
+import "../styles/global.css";
 
 import Hero from "@components/Hero.astro";
 import About from "@components/About.astro";
-import Skills from "@components/Skills.astro";
-
-import type { Project } from "src/shared/models";
-import Work from "@components/Work.astro";
-import Availability from "@components/Availability.astro";
 import Footer from "@components/Footer.astro";
 import Services from "@components/Services.astro";
 import Blob from "@components/Blob.astro";
-
-const projects: Project[] = [
-  {
-    title: "Travel.ly",
-    subtitle: "Find your best trip plan.",
-    imageUrl: "https://picsum.photos/1280/720?random=1",
-  },
-  {
-    title: "Framework",
-    subtitle: "Machines for the most tech enthusiast.",
-    imageUrl: "https://picsum.photos/1280/720?random=2",
-  },
-  {
-    title: "Render.io",
-    subtitle: "Create 3D models for your projects.",
-    imageUrl: "https://picsum.photos/1280/720?random=3",
-  },
-  {
-    title: "Portfolio",
-    subtitle: "Personal architecture portfolio.",
-    imageUrl: "https://picsum.photos/1280/720?random=4",
-  },
-];
+import Work from "@components/Work.astro";
 ---
 
 <html lang="en">
@@ -51,13 +24,14 @@ const projects: Project[] = [
     />
   </head>
   <body>
+    <!--  <Intro /> -->
     <Blob />
     <Hero />
     <About />
-    <Work projects={projects} />
-    <Skills />
+    <Work>aaaaaahhhhhhhh</Work>
+    <!--   <Skills /> -->
     <Services />
-    <Availability />
+    <!--   <Availability /> -->
     <Footer />
   </body>
 
@@ -66,19 +40,14 @@ const projects: Project[] = [
     import ScrollTrigger from "gsap/ScrollTrigger";
     import gsap from "gsap";
 
-    // Initialize a new Lenis instance for smooth scrolling
     const lenis = new Lenis();
 
-    // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
     lenis.on("scroll", ScrollTrigger.update);
 
-    // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-    // This ensures Lenis's smooth scroll animation updates on each GSAP tick
     gsap.ticker.add((time) => {
-      lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+      lenis.raf(time * 1000);
     });
 
-    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
     gsap.ticker.lagSmoothing(0);
   </script>
 </html>
