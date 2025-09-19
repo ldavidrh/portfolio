@@ -3,8 +3,8 @@ import Image from "astro/components/Image.astro";
 import Photo from "@images/photo.webp";
 ---
 
-<section class="xl:p-28">
-  <h1 class="xl:text-7xl md:text-5xl text-4xl mb-10">
+<section class="hero-section xl:p-28 p-4">
+  <h1 class="slide-in xl:text-7xl md:text-5xl text-4xl mb-10 overflow-hidden">
     Hi, my name is David Restrepo. I'am a <span class="text-red-500"
       >Multidisciplinary Web Developer</span
     >
@@ -13,6 +13,37 @@ import Photo from "@images/photo.webp";
   <Image
     src={Photo}
     alt="David Restrepo"
-    class="rounded-2xl xl:h-screen md:h-[600px] h-[400px] object-cover"
+    class="rounded-2xl xl:h-screen md:h-[600px] h-[400px] object-cover w-full"
   />
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin([ScrollTrigger, SplitText]);
+
+  const container = document.querySelector(".hero-section");
+
+  const text = container?.querySelector(".slide-in");
+
+  if (text) {
+    const split = new SplitText(text);
+
+    gsap.set(split.lines, {
+      overflowY: "hidden",
+      lineHeight: 1.1,
+    });
+
+    gsap.from(split.words, {
+      yPercent: 100,
+      opacity: 0,
+      ease: "power4.out",
+      stagger: (index) => {
+        return index * 0.05;
+      },
+      duration: 1,
+    });
+  }
+</script>

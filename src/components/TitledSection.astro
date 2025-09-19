@@ -7,12 +7,47 @@ interface Props {
 const { title, subtitle } = Astro.props;
 ---
 
-<section class="xl:p-28">
-  <h2 class="text-7xl mb-4">{title}</h2>
-  {subtitle ? <p class="text-2xl text-gray-500 w-1/2"> {subtitle}</p> : null}
+<section class="section-container xl:p-28 px-4 py-16">
+  <h2 class="slide-in xl:text-7xl mb-4 overflow-hidden text-4xl">{title}</h2>
+  {
+    subtitle ? (
+      <div class="overflow-hidden w-1/2 h-fit">
+        <p class="slide-in xl:text-2xl text-sm text-gray-500 ">{subtitle}</p>
+      </div>
+    ) : null
+  }
   <slot />
 </section>
 
 <script>
   import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(SplitText);
+
+  const containers = document.querySelectorAll(".section-container");
+
+  containers.forEach((container) => {
+    const text = container.querySelectorAll(".slide-in");
+
+    text.forEach((text) => {
+      const split = new SplitText(text);
+
+      split.lines.forEach((line) =>
+        gsap.set(line, {
+          overflowY: "hidden",
+        })
+      );
+
+      gsap.from(split.words, {
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+        },
+        ease: "power4.inOut",
+        duration: 1.5,
+        yPercent: 100,
+      });
+    });
+  });
 </script>

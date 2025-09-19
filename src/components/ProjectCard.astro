@@ -5,10 +5,12 @@ interface Props {
   imageUrl: string;
 }
 
-const { title, subtitle, imageUrl } = Astro.props;
+const { title, imageUrl } = Astro.props;
 ---
 
-<div class="card h-[700px] relative overflow-hidden">
+<div
+  class="card enlarge-blob xl:h-screen md:h-[400px] h-[300px] relative overflow-hidden"
+>
   <img
     src={imageUrl}
     alt="Cover"
@@ -49,12 +51,10 @@ const { title, subtitle, imageUrl } = Astro.props;
       .pause();
 
     card.addEventListener("mouseenter", () => {
-      console.log("mouseenter");
       slideAnimation.play();
       fadeAnimation.play();
     });
     card.addEventListener("mouseleave", () => {
-      console.log("mouseleave");
       fadeAnimation.reverse().then((_) => slideAnimation.pause(0));
     });
   });

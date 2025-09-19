@@ -1,70 +1,59 @@
 ---
-import FigmaIcon from "@images/brand-icons/figma.svg";
+/* import FigmaIcon from "@images/brand-icons/figma.svg";
 import AngularIcon from "@images/brand-icons/angular.svg";
 import AstroIcon from "@images/brand-icons/astro.svg";
 import SassIcon from "@images/brand-icons/sass.svg";
+import { string } from "astro:schema";
 
 const icons = [
   { icon: FigmaIcon, color: "#F24E1E" },
   { icon: AstroIcon, color: "#BC52EE" },
   { icon: AngularIcon, color: "#0F0F11" },
   { icon: SassIcon, color: "#CC6699" },
-];
+]; */
 
-const { name, description, isLast } = Astro.props;
+interface Props {
+  name: string;
+  description: string;
+  index: number;
+}
+
+const { name, description, index } = Astro.props;
+const number = index.toString().padStart(2, "0");
 ---
 
-<div class:list={["service-item", { "is-last": isLast }]}>
-  <h3 class="service-name">{name}</h3>
-  <div class="description">
-    <p class="service-description">
-      {description}
-    </p>
-
-    <div class="icons">
-      {
-        icons.map(({ icon: Icon, color }, idx) => (
-          <Icon
-            width={24}
-            height={24}
-            style={`color: ${color}; fill: ${color};`}
-          />
-        ))
-      }
-    </div>
-  </div>
+<div class="service-container w-full flex flex-col gap-12 xl:my-0 mb-12">
+  <div class="span-in sm:hidden bg-gray-300 h-[1px] origin-center"></div>
+  <span class="xl:text-2xl text-lg text-gray-300">{number}</span>
+  <div class="span-in hidden sm:block bg-gray-300 h-[1px] origin-center"></div>
+  <h3 class="xl:text-3xl text-2xl">{name}</h3>
+  <p class="xl:text-xl text-sm font-light text-gray-400">{description}</p>
 </div>
 
-<style lang="scss">
-  .service-item {
-    border-top: 1px solid rgb(220, 220, 220);
-    padding-block: 18px;
-    display: flex;
-    justify-content: space-between;
-    min-height: 300px;
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    .service-name {
-      font-size: 64px;
-      font-weight: 300;
-    }
+  gsap.registerPlugin([ScrollTrigger]);
 
-    .description {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      .service-description {
-        max-width: 600px;
-        color: #484848;
-        font-size: 24px;
+  const containers = document.querySelectorAll(".service-container");
+
+  containers.forEach((container) => {
+    let divider = container.querySelector(".span-in");
+
+    gsap.fromTo(
+      divider,
+      {
+        scaleX: 0,
+      },
+      {
+        scrollTrigger: {
+          trigger: container,
+        },
+        duration: 1,
+        ease: "power4.inOut",
+        scaleX: 1,
       }
-      .icons {
-        display: flex;
-        gap: 1rem;
-      }
-    }
-  }
-
-  .is-last {
-    border-bottom: 1px solid rgb(220, 220, 220);
-  }
-</style>
+    );
+  });
+</script>

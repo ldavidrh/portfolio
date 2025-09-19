@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
 import Hero from "@components/Hero.astro";
 import About from "@components/About.astro";
@@ -7,6 +8,7 @@ import Footer from "@components/Footer.astro";
 import Services from "@components/Services.astro";
 import Blob from "@components/Blob.astro";
 import Work from "@components/Work.astro";
+// import Skills from "@components/Skills.astro";
 ---
 
 <html lang="en">
@@ -22,20 +24,19 @@ import Work from "@components/Work.astro";
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+    <ClientRouter />
   </head>
   <body>
     <!--  <Intro /> -->
     <Blob />
     <Hero />
     <About />
-    <Work>aaaaaahhhhhhhh</Work>
-    <!--   <Skills /> -->
+    <Work />
+    <!-- <Skills /> -->
     <Services />
-    <!--   <Availability /> -->
-    <Footer />
-  </body>
 
-  <script>
+    <Footer />
+  </body><script>
     import Lenis from "lenis";
     import ScrollTrigger from "gsap/ScrollTrigger";
     import gsap from "gsap";
@@ -51,9 +52,3 @@ import Work from "@components/Work.astro";
     gsap.ticker.lagSmoothing(0);
   </script>
 </html>
-
-<style>
-  body {
-    position: relative;
-  }
-</style>
