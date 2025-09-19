@@ -26,23 +26,43 @@ const number = index.toString().padStart(2, "0");
   <div class="span-in sm:hidden bg-gray-300 h-[1px] origin-center"></div>
   <span class="xl:text-2xl text-lg text-gray-300">{number}</span>
   <div class="span-in hidden sm:block bg-gray-300 h-[1px] origin-center"></div>
-  <h3 class="xl:text-3xl text-2xl">{name}</h3>
-  <p class="xl:text-xl text-sm font-light text-gray-500">{description}</p>
+  <h3 class="fade-in xl:text-3xl text-2xl">{name}</h3>
+  <p class="fade-in xl:text-xl text-sm font-light text-gray-500">
+    {description}
+  </p>
 </div>
 
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/all";
 
   gsap.registerPlugin([ScrollTrigger]);
 
   const containers = document.querySelectorAll(".service-container");
 
   containers.forEach((container) => {
-    let divider = container.querySelector(".span-in");
+    let dividers = container.querySelectorAll(".span-in");
+    let texts = container.querySelectorAll(".fade-in");
+    texts.forEach((text) => {
+      const split = new SplitText(text);
+
+      gsap.from(split.lines, {
+        scrollTrigger: {
+          trigger: container,
+          start: "top 70%",
+        },
+        yPercent: 100,
+        duration: 1,
+        opacity: 0,
+        stagger: (index) => {
+          return index * 0.1;
+        },
+      });
+    });
 
     gsap.fromTo(
-      divider,
+      dividers,
       {
         scaleX: 0,
       },
