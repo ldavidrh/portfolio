@@ -24,10 +24,14 @@ const number = index.toString().padStart(2, "0");
 
 <div class="service-container w-full flex flex-col gap-12 xl:my-0 mb-12">
   <div class="span-in sm:hidden bg-gray-300 h-[1px] origin-center"></div>
-  <span class="xl:text-2xl text-lg text-gray-300">{number}</span>
+  <span class="fade-in xl:text-2xl text-lg text-gray-300 overflow-y-hidden"
+    >{number}</span
+  >
   <div class="span-in hidden sm:block bg-gray-300 h-[1px] origin-center"></div>
-  <h3 class="fade-in xl:text-3xl text-2xl">{name}</h3>
-  <p class="fade-in xl:text-xl text-sm font-light text-gray-500">
+  <h3 class="fade-in xl:text-3xl text-2xl overflow-y-hidden">{name}</h3>
+  <p
+    class="fade-in xl:text-xl text-sm font-light text-gray-500 overflow-y-hidden"
+  >
     {description}
   </p>
 </div>
@@ -46,6 +50,12 @@ const number = index.toString().padStart(2, "0");
     let texts = container.querySelectorAll(".fade-in");
     texts.forEach((text) => {
       const split = new SplitText(text);
+
+      split.words.forEach((word) =>
+        gsap.set(word, {
+          overflowY: "hidden",
+        })
+      );
 
       gsap.from(split.lines, {
         scrollTrigger: {
