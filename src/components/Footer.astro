@@ -1,20 +1,20 @@
-<footer class="footer xl:p-20 flex flex-col gap-20">
-  <div class="flex w-full h-full gap-16">
+<footer class="footer md:p-20 flex flex-col gap-20 h-screen">
+  <div class="flex w-full h-full gap-16 flex-col md:flex-row">
     <div
-      class="xl:text-9xl bg-red-700 flex-1 text-white p-16 grid place-items-center relative"
+      class="xl:text-9xl bg-red-700 flex-1 text-white p-16 grid place-items-center relative text-3xl"
     >
       <div
-        class="box-container grid grid-cols-6 grid-rows-6 absolute top-0 left-0 size-full"
+        class="box-container grid grid-cols-12 grid-rows-12 absolute top-0 left-0 size-full"
       >
         {
-          Array.from({ length: 36 }).map((_, index) => {
-            return <div class="box bg-black" />;
+          Array.from({ length: 144 }).map((_, index) => {
+            return <div class="box bg-black size-full" />;
           })
         }
       </div>
       READY TO WORK?
     </div>
-    <div class="flex-1 flex flex-col gap-12">
+    <div class="flex-1 flex flex-col gap-12 p-4 md:p-0">
       <div class="text-white xl:text-2xl">
         <label for="name" class="text-lg text-gray-400">Name</label>
         <input
@@ -44,7 +44,7 @@
           placeholder="I would like to request a quotation for..."
         />
       </div>
-      <button
+      <!-- <button
         class="py-2 px-4 flex gap-6 bg-red-600 rounded-2xl text-white size-fit items-center cursor-pointer w-fit self-end"
         ><span class="text-2xl font-thin">Submit</span>
         <div
@@ -52,15 +52,30 @@
         >
           →
         </div></button
-      >
+      > -->
     </div>
   </div>
-  <div class="text-white flex">
+  <div class="text-white flex p-4">
     <div class="flex-1">
       <p class="text-sm text-gray-600">Socials</p>
-      <a class="block" href="#">Instagram</a>
-      <a class="block" href="#">Facebook</a>
-      <a class="block" href="#">Github</a>
+      <a
+        class="block"
+        href="https://www.instagram.com/ld.res/"
+        target="_blank"
+        rel="noreferrer noopener">Instagram</a
+      >
+      <a
+        class="block"
+        href="https://www.linkedin.com/in/ldavidrh/"
+        target="_blank"
+        rel="noreferrer noopener">Linkedin</a
+      >
+      <a
+        class="block"
+        href="https://github.com/ldavidrh"
+        target="_blank"
+        rel="noreferrer noopener">Github</a
+      >
     </div>
     <div class="flex-1">
       <p class="text-sm text-gray-600">Links</p>
@@ -94,15 +109,12 @@
         trigger: footer,
         start: "top 30%",
       },
-      grid: "auto",
       stagger: {
-        grid: [6, 6],
-        from: "start",
-        axis: "x",
-        ease: "power2.in",
-        amount: 0.5,
+        grid: "auto",
+        from: "edges",
+        amount: 0.3,
       },
-      duration: 1,
+      duration: 0.6,
       ease: "power4.inOut",
       scale: 0,
     });

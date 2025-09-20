@@ -8,7 +8,7 @@ interface Props {
 const { title, subtitle, cta } = Astro.props;
 ---
 
-<section class="section-container xl:p-28 px-4 py-16">
+<section class="section-container xl:p-28 px-4 py-16 dark">
   <h2 class="slide-in xl:text-7xl mb-4 overflow-hidden text-4xl">{title}</h2>
   <div class="flex justify-between items-end w-full">
     {
@@ -20,7 +20,7 @@ const { title, subtitle, cta } = Astro.props;
         </div>
       ) : null
     }
-    {
+    <!--  {
       cta ? (
         <div class="py-3 px-6 flex gap-6 bg-black rounded-2xl text-white size-fit items-center cursor-pointer">
           <span class="text-2xl font-thin">{cta}</span>
@@ -29,7 +29,7 @@ const { title, subtitle, cta } = Astro.props;
           </div>
         </div>
       ) : null
-    }
+    } -->
   </div>
   <slot />
 </section>
