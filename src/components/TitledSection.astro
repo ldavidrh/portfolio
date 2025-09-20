@@ -2,20 +2,35 @@
 interface Props {
   title: string;
   subtitle?: string;
+  cta?: string;
 }
 
-const { title, subtitle } = Astro.props;
+const { title, subtitle, cta } = Astro.props;
 ---
 
 <section class="section-container xl:p-28 px-4 py-16">
   <h2 class="slide-in xl:text-7xl mb-4 overflow-hidden text-4xl">{title}</h2>
-  {
-    subtitle ? (
-      <div class="overflow-hidden w-1/2 h-fit">
-        <p class="slide-in xl:text-2xl text-sm text-gray-500 ">{subtitle}</p>
-      </div>
-    ) : null
-  }
+  <div class="flex justify-between items-end w-full">
+    {
+      subtitle ? (
+        <div class="overflow-hidden w-full h-fit flex-1">
+          <p class="slide-in xl:text-2xl text-sm text-gray-500 w-1/2 ">
+            {subtitle}
+          </p>
+        </div>
+      ) : null
+    }
+    {
+      cta ? (
+        <div class="py-3 px-6 flex gap-6 bg-black rounded-2xl text-white size-fit items-center cursor-pointer">
+          <span class="text-2xl font-thin">{cta}</span>
+          <div class="rounded-full size-10 bg-white text-black grid place-items-center">
+            →
+          </div>
+        </div>
+      ) : null
+    }
+  </div>
   <slot />
 </section>
 

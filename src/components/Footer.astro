@@ -1,5 +1,75 @@
-<div class="footer"></div>
-
+<footer class="footer xl:p-20 flex flex-col gap-20">
+  <div class="flex w-full h-full gap-16">
+    <div
+      class="xl:text-9xl bg-red-700 flex-1 text-white p-16 grid place-items-center relative"
+    >
+      <div
+        class="box-container grid grid-cols-6 grid-rows-6 absolute top-0 left-0 size-full"
+      >
+        {
+          Array.from({ length: 36 }).map((_, index) => {
+            return <div class="box bg-black" />;
+          })
+        }
+      </div>
+      READY TO WORK?
+    </div>
+    <div class="flex-1 flex flex-col gap-12">
+      <div class="text-white xl:text-2xl">
+        <label for="name" class="text-lg text-gray-400">Name</label>
+        <input
+          class="border-solid border-b-2 border-b-gray-600 w-full text-white py-3 placeholder:text-gray-600"
+          name="name"
+          id="name"
+          placeholder="John Doe"
+        />
+      </div>
+      <div class="text-white xl:text-2xl">
+        <label for="email" class="text-lg text-gray-400">Email</label>
+        <input
+          class="border-solid border-b-2 border-b-gray-600 w-full text-white py-3 placeholder:text-gray-600"
+          name="email"
+          id="email"
+          placeholder="johndoe@email.com"
+        />
+      </div>
+      <div class="text-white xl:text-2xl">
+        <label for="request" class="text-lg text-gray-400"
+          >How can I help you?</label
+        >
+        <input
+          class="border-solid border-b-2 border-b-gray-600 w-full text-white py-3 placeholder:text-gray-600"
+          name="request"
+          id="request"
+          placeholder="I would like to request a quotation for..."
+        />
+      </div>
+      <button
+        class="py-2 px-4 flex gap-6 bg-red-600 rounded-2xl text-white size-fit items-center cursor-pointer w-fit self-end"
+        ><span class="text-2xl font-thin">Submit</span>
+        <div
+          class="rounded-full size-10 bg-white text-black grid place-items-center"
+        >
+          →
+        </div></button
+      >
+    </div>
+  </div>
+  <div class="text-white flex">
+    <div class="flex-1">
+      <p class="text-sm text-gray-600">Socials</p>
+      <a class="block" href="#">Instagram</a>
+      <a class="block" href="#">Facebook</a>
+      <a class="block" href="#">Github</a>
+    </div>
+    <div class="flex-1">
+      <p class="text-sm text-gray-600">Links</p>
+      <a class="block">About me</a>
+      <a class="block">Work</a>
+      <a class="block">asdasd</a>
+    </div>
+  </div>
+</footer>
 <style lang="scss">
   .footer {
     height: 100vh;
@@ -7,3 +77,34 @@
     background-color: black;
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/all";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const footer = document.querySelector(".box-container");
+
+  const elements = footer?.querySelectorAll(".box");
+
+  if (elements) {
+    gsap.to(elements, {
+      scrollTrigger: {
+        trigger: footer,
+        start: "top 30%",
+      },
+      grid: "auto",
+      stagger: {
+        grid: [6, 6],
+        from: "start",
+        axis: "x",
+        ease: "power2.in",
+        amount: 0.5,
+      },
+      duration: 1,
+      ease: "power4.inOut",
+      scale: 0,
+    });
+  }
+</script>

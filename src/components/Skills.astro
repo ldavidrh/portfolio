@@ -1,4 +1,6 @@
 ---
+import TitledSection from "./TitledSection.astro";
+
 const skills = ["Angular", "Astro", "SCSS", "GSAP", "WordPress"];
 const skillsWithColors = [
   {
@@ -19,8 +21,7 @@ const skillsWithColors = [
 ];
 ---
 
-<section class="skills container">
-  <h1 class="title">Skills</h1>
+<TitledSection title="Skills">
   <div class="skill-list">
     {
       skillsWithColors.map((skill, index) => (
@@ -36,7 +37,7 @@ const skillsWithColors = [
       ))
     }
   </div>
-</section>
+</TitledSection>
 
 <style>
   .skills {
@@ -54,6 +55,7 @@ const skillsWithColors = [
     display: flex;
     flex-direction: column;
     gap: 32px;
+    border-top: 1px solid var(--color-red-300)
     /*   border-top: 1px solid rgb(220, 220, 220); */
     padding-block: 8px;
     font-size: clamp(1rem, 0.648rem + 1.502vw, 2rem);
