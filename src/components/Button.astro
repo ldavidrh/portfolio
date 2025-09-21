@@ -1,9 +1,76 @@
 ---
 interface Props {
-  label: string;
   link?: string;
 }
-const { label, link } = Astro.props;
+const { link } = Astro.props;
 ---
 
-<a href={link}>{label}</a>
+<a
+  class="anim-container text-white size-fit px-4 py-2 relative overflow-hidden cursor-pointer"
+  href={link}
+>
+  <div
+    class="anim absolute top-0 left-0 rounded-full size-1 bg-red-700 pointer-events-none z-0"
+  >
+  </div>
+  <div class="relative z-10"><slot /></div>
+</a>
+
+<script>
+  import gsap from "gsap";
+
+  const buttons = document.querySelectorAll(".anim-container");
+
+  buttons.forEach((button) => {
+    const bubble = button.querySelector(".anim");
+
+    if (!bubble) return;
+
+    gsap.to(bubble, { scale: 0 });
+
+    const enlargeAnimation = gsap
+      .to(bubble, {
+        scale: 100,
+        ease: "power2.in",
+        duration: 0.4,
+      })
+      .pause();
+
+    button.addEventListener("mouseenter", (ev: Event) => {
+      setBubblePosition(
+        button.getBoundingClientRect(),
+        ev as MouseEvent,
+        bubble
+      );
+
+      enlargeAnimation.play();
+    });
+
+    button.addEventListener("mouseleave", (ev: Event) => {
+      setBubblePosition(
+        button.getBoundingClientRect(),
+        ev as MouseEvent,
+        bubble
+      );
+
+      enlargeAnimation.reverse();
+    });
+  });
+
+  function setBubblePosition(
+    bcr: DOMRect,
+    mouseEvent: MouseEvent,
+    bubble: Element
+  ) {
+    let { x, y } = getMouseEventCoordinate(bcr, mouseEvent);
+
+    gsap.set(bubble, {
+      x,
+      y,
+    });
+  }
+
+  function getMouseEventCoordinate(rect: DOMRect, event: MouseEvent) {
+    return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+  }
+</script>
