@@ -5,17 +5,8 @@ import Button from "./Button.astro";
 <footer class="footer md:p-20 flex flex-col gap-20 h-screen mt-48">
   <div class="flex w-full h-full gap-16 flex-col md:flex-row">
     <div
-      class="xl:text-9xl bg-red-700 flex-1 text-white p-16 grid place-items-center relative text-3xl"
+      class="box-container xl:text-9xl bg-red-700 flex-1 text-white p-16 grid place-items-center relative text-3xl"
     >
-      <div
-        class="box-container grid grid-cols-12 grid-rows-12 absolute top-0 left-0 size-full"
-      >
-        {
-          Array.from({ length: 144 }).map((_, index) => {
-            return <div class="box bg-black size-full" />;
-          })
-        }
-      </div>
       READY TO WORK?
     </div>
     <div class="flex-1 flex flex-col gap-12 p-4 md:p-0">
@@ -95,25 +86,21 @@ import Button from "./Button.astro";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const footer = document.querySelector(".box-container");
+  const box = document.querySelector(".box-container");
 
-  const elements = footer?.querySelectorAll(".box");
-
-  if (elements) {
-    gsap.to(elements, {
-      scrollTrigger: {
-        trigger: footer,
-        start: "top 30%",
-      },
-      stagger: {
-        grid: "auto",
-        from: "edges",
-        amount: 0.5,
-      },
-
-      duration: 1,
-      ease: "power4.inOut",
-      scale: 0,
-    });
-  }
+  gsap.to(box, {
+    scrollTrigger: {
+      trigger: "footer",
+      start: "top 30%",
+    },
+    duration: 1,
+    ease: "power4.inOut",
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+  });
 </script>
+
+<style>
+  .box-container {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+</style>
